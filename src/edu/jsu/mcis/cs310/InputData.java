@@ -18,7 +18,6 @@ public class InputData {
         try {
             
             // open file input streams
-            
             StringBuilder csvBuffer = new StringBuilder();
             StringBuilder jsonBuffer = new StringBuilder();
             
@@ -28,7 +27,6 @@ public class InputData {
             String line;
             
             // read CSV data
-            
             while((line = csvReader.readLine()) != null) {
                 csvBuffer.append(line).append('\n');
             }
@@ -36,7 +34,6 @@ public class InputData {
             csvString = csvBuffer.toString().trim();
             
             // read JSON data
-            
             while((line = jsonReader.readLine()) != null) {
                 jsonBuffer.append(line).append('\n');
             }
@@ -44,7 +41,6 @@ public class InputData {
             jsonString = jsonBuffer.toString().trim();
             
             // close file input streams
-            
             csvReader.close();
             jsonReader.close();
             
@@ -55,7 +51,6 @@ public class InputData {
         
         this.csvString = csvString;
         this.jsonString = jsonString;
-        
     }
 
     public String getCsvString() {
@@ -65,5 +60,4 @@ public class InputData {
     public String getJsonString() {
         return jsonString;
     }
-    
 }

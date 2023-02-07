@@ -2,11 +2,19 @@ package edu.jsu.mcis.cs310;
 
 import com.github.cliftonlabs.json_simple.*;
 import com.opencsv.*;
+import java.util.Iterator;
+import java.util.List;
+
+import com.opencsv.CSVParser;
+import com.opencsv.CSVParserBuilder;
+import java.io.StringReader;
+import java.io.StringWriter;
+import java.text.DecimalFormat;
+import java.util.stream.Collectors;
 
 public class Converter {
-    
-    /*
-        
+   {
+    /*      DOOR CODE   4235
         Consider the following CSV data, a portion of a database of episodes of
         the classic "Star Trek" television series:
         
@@ -68,43 +76,63 @@ public class Converter {
         STRINGS!!!  Leave ALL string conversion to the two data conversion
         libraries we have discussed, OpenCSV and json-simple.  See the "Data
         Exchange" lecture notes for more details, including examples.
-        
     */
+}
     
     @SuppressWarnings("unchecked")
     public static String csvToJson(String csvString) {
-        
-        String result = "{}"; // default return value; replace later!
+        String result = "{}"; // default return value; replace later!;
         
         try {
-        
             // INSERT YOUR CODE HERE
+            CSVReader reader = new CSVReader(new StringReader(csvString));
+            String[] headers = reader.readNext();
             
+            JsonObject obj = new JsonObject();
+            JsonArray col_head = new JsonArray();
+            JsonArray total_data = new JsonArray();
+            String[] row;
+            obj.put("ColHeadings", headers);
+            
+            while ((row = reader.readNext()) != null) {
+                String[] rows = reader.readNext();
+                col_head.add(row[0]);
+                JsonArray row_data = new JsonArray();
+                
+                for (int i = 0; i < headers.length; i++) {
+                    try {
+                        int num = Integer.parseInt(row[i]);
+                        row_data.add(num);
+                    } catch (NumberFormatException e) {
+                        row_data.add(row[i]);
+                    }
+                    
+                }
+                total_data.add(row_data);
+            }
+            obj.put("Prodnums", col_head);
+            obj.put("Data", total_data);
+            
+            result = obj.toJson();
         }
         catch (Exception e) {
             e.printStackTrace();
         }
         
         return result.trim();
-        
     }
     
     @SuppressWarnings("unchecked")
     public static String jsonToCsv(String jsonString) {
-        
         String result = ""; // default return value; replace later!
         
         try {
-            
             // INSERT YOUR CODE HERE
             
         }
         catch (Exception e) {
             e.printStackTrace();
         }
-        
         return result.trim();
-        
     }
-    
 }
