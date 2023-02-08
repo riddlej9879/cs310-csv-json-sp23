@@ -27,7 +27,7 @@ public class Main {
             System.out.println("\nCONVERSION RESULTS (JSON to CSV)");
             System.out.println("================================");
             
-            System.out.println(csvString);
+            //System.out.println(csvString);
             
             // parse output to CSV/JSON objects
             CSVReader csvReader = new CSVReader(new StringReader(csvString));

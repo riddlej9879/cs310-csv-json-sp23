@@ -18,11 +18,10 @@ public class JsonToCsvConverterTest {
         
         json = Jsoner.deserialize(jsonString, new JsonObject());
     }
-        
+    
     @Test
     public void testCsvToJson() {
         try {
-            
             String testJsonString = Converter.csvToJson(csvString);
             JsonObject testJsonObject = Jsoner.deserialize(testJsonString, new JsonObject());
             
@@ -36,7 +35,6 @@ public class JsonToCsvConverterTest {
     @Test
     public void testJsonToCsv() {
         try {
-            
             String testCsvString = Converter.jsonToCsv(jsonString);
             
             assertEquals(csvString, testCsvString);
@@ -49,7 +47,6 @@ public class JsonToCsvConverterTest {
     @Test
     public void testCsvToJsonToCsv() {
         try {
-            
             String testJsonString = Converter.csvToJson(csvString);
             String testCsvString = Converter.jsonToCsv(testJsonString);
             
@@ -63,7 +60,6 @@ public class JsonToCsvConverterTest {
     @Test
     public void testJsonToCsvToJson() {
         try {
-            
             String testCsvString = Converter.jsonToCsv(jsonString);
             String testJsonString = Converter.csvToJson(testCsvString);
             
