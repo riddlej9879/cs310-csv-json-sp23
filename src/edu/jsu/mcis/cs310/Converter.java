@@ -165,7 +165,6 @@ public class Converter {
                         _arr[x] = String.format("%02d",
                                 Integer.parseInt(_str));
                     } else {
-                        System.out.println(headings[x]);
                         _arr[x] = _str;
                     }
                 }
